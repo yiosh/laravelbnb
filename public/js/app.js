@@ -1968,10 +1968,40 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     BookableListItem: _BookableListItem__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  data: function data() {
+    return {
+      bookables: null,
+      loading: true
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    setTimeout(function () {
+      _this.bookables = [{
+        title: "Cheap Villa",
+        content: "A very cheap villa",
+        price: 1000
+      }, {
+        title: "Cheap Villa2",
+        content: "A very cheap villa2",
+        price: 1500
+      }];
+      _this.loading = false;
+    }, 3000);
   }
 });
 
@@ -37671,27 +37701,24 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("bookable-list-item", {
-        attrs: {
-          title: "Cheap Villa",
-          content: " Very cheap villa",
-          price: 1000
-        }
-      }),
-      _vm._v(" "),
-      _c("bookable-list-item", {
-        attrs: {
-          title: "Cheap Villa2",
-          content: " Very cheap villa2",
-          price: 1500
-        }
-      })
-    ],
-    1
-  )
+  return _c("div", [
+    _vm.loading
+      ? _c("div", [_vm._v("Fetching data...")])
+      : _c(
+          "div",
+          _vm._l(_vm.bookables, function(bookable, index) {
+            return _c("bookable-list-item", {
+              key: index,
+              attrs: {
+                title: bookable.title,
+                content: bookable.content,
+                price: bookable.price
+              }
+            })
+          }),
+          1
+        )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
